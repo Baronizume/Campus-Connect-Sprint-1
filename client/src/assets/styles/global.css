@@ -1,0 +1,43 @@
+@import "./variables.css";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 1rem;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+button {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+.card {
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--white-color);
+}
+
+.loader {
+  padding: 1rem;
+  text-align: center;
+}
