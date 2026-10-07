@@ -1,39 +1,58 @@
 import { Link } from "react-router-dom";
+import Card from "../../components/ui/Card";
+import PageTitle from "../../components/ui/PageTitle";
+import Button from "../../components/ui/Button";
 import "./Profile.css";
 
 function Profile() {
   return (
     <div className="profile-page">
-
       <div className="profile-container">
 
+        {/* PROFILE HEADER */}
         <div className="profile-top">
+
           <Link to="/dashboard" className="back-link">
             ← Back to Dashboard
           </Link>
 
-          <p className="profile-label">MY PROFILE</p>
-          <h1>Your Profile</h1>
+          <p className="profile-label">
+            MY PROFILE
+          </p>
+
+          <PageTitle>
+            Your Profile
+          </PageTitle>
+
           <p className="profile-subtitle">
             Manage your Campus Connect profile information.
           </p>
+
         </div>
 
-        <div className="profile-card">
+        {/* PROFILE CARD */}
+        <Card className="profile-card">
 
           <div className="profile-header">
+
             <div className="profile-avatar">
               A
             </div>
 
             <div>
-              <h2>Campus Student</h2>
-              <p>Student Account</p>
+              <h2>
+                Campus Student
+              </h2>
+
+              <p>
+                Student Account
+              </p>
             </div>
 
-            <button className="edit-button">
+            <Button className="edit-button">
               ✏️ Edit Profile
-            </button>
+            </Button>
+
           </div>
 
           <div className="profile-divider"></div>
@@ -62,7 +81,9 @@ function Profile() {
 
             <div className="profile-field">
               <span>Department</span>
-              <strong>Computer Science & Engineering</strong>
+              <strong>
+                Computer Science & Engineering
+              </strong>
             </div>
 
             <div className="profile-field">
@@ -72,29 +93,29 @@ function Profile() {
 
           </div>
 
-        </div>
+        </Card>
 
+        {/* PROFILE STATS */}
         <div className="profile-stats">
 
-          <div className="profile-stat">
+          <Card className="profile-stat">
             <strong>12</strong>
             <span>Events Joined</span>
-          </div>
+          </Card>
 
-          <div className="profile-stat">
+          <Card className="profile-stat">
             <strong>5</strong>
             <span>Workshops</span>
-          </div>
+          </Card>
 
-          <div className="profile-stat">
+          <Card className="profile-stat">
             <strong>3</strong>
             <span>Activities</span>
-          </div>
+          </Card>
 
         </div>
 
       </div>
-
     </div>
   );
 }

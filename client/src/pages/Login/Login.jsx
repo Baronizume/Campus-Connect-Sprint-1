@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import Button from "../../components/ui/Button";
+import PageTitle from "../../components/ui/PageTitle";
 import "./Login.css";
 
 function Login() {
@@ -7,24 +9,35 @@ function Login() {
 
       <div className="login-card">
 
+        {/* LOGO */}
         <div className="login-logo">
           Campus<span>-Connect</span>
         </div>
 
+        {/* HEADER */}
         <div className="login-header">
-          <div className="login-icon">🎓</div>
 
-          <h1>Welcome Back</h1>
+          <div className="login-icon">
+            🎓
+          </div>
+
+          <PageTitle>
+            Welcome Back
+          </PageTitle>
 
           <p>
             Login to continue to your Campus Connect account.
           </p>
+
         </div>
 
+        {/* LOGIN FORM */}
         <form className="login-form">
 
           <div className="form-group">
-            <label htmlFor="email">Email Address</label>
+            <label htmlFor="email">
+              Email Address
+            </label>
 
             <input
               id="email"
@@ -34,7 +47,9 @@ function Login() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">
+              Password
+            </label>
 
             <input
               id="password"
@@ -44,6 +59,7 @@ function Login() {
           </div>
 
           <div className="login-options">
+
             <label className="remember-me">
               <input type="checkbox" />
               Remember me
@@ -52,23 +68,32 @@ function Login() {
             <a href="#forgot">
               Forgot Password?
             </a>
+
           </div>
 
-          <button type="submit" className="login-submit">
+          <Button
+            type="submit"
+            className="login-submit"
+          >
             Login →
-          </button>
+          </Button>
 
         </form>
 
+        {/* DIVIDER */}
         <div className="login-divider">
           <span>or</span>
         </div>
 
+        {/* SIGN UP */}
         <p className="signup-text">
           Don't have an account?{" "}
-          <a href="#signup">Create Account</a>
+          <a href="#signup">
+            Create Account
+          </a>
         </p>
 
+        {/* BACK HOME */}
         <Link to="/" className="back-home">
           ← Back to Home
         </Link>

@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Button from "../../components/ui/Button";
+import Card from "../../components/ui/Card";
+import PageTitle from "../../components/ui/PageTitle";
 import "./Home.css";
 
 function Home() {
@@ -63,24 +66,6 @@ function Home() {
   return (
     <div className="home-page">
 
-      {/* NAVBAR */}
-      <header className="navbar">
-        <Link to="/" className="logo">
-          Campus<span>-Connect</span>
-        </Link>
-
-        <nav className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/events">Events</Link>
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/profile">Profile</Link>
-        </nav>
-
-        <Link to="/login" className="login-button">
-          Login
-        </Link>
-      </header>
-
       {/* HERO */}
       <section className="hero" id="home">
         <div className="hero-content">
@@ -89,13 +74,13 @@ function Home() {
             🎓 CAMPUS EVENT PLATFORM
           </div>
 
-          <h1>
+          <PageTitle>
             Discover.
             <br />
             <span>Connect.</span>
             <br />
             Experience.
-          </h1>
+          </PageTitle>
 
           <p>
             Find exciting events, workshops, cultural programs,
@@ -107,9 +92,16 @@ function Home() {
               Explore Events →
             </Link>
 
-            <a href="#about" className="secondary-button">
+            <Button
+              className="secondary-button"
+              onClick={() => {
+                document
+                  .getElementById("about")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
               Learn More
-            </a>
+            </Button>
           </div>
 
         </div>
@@ -118,26 +110,38 @@ function Home() {
       {/* FEATURES */}
       <section className="features-section">
 
-        <div className="feature-card">
+        <Card
+          title="Events"
+          description="Discover campus events"
+        >
           <div className="feature-icon">🎓</div>
-          <h3>Events</h3>
-          <p>Discover campus events</p>
-          <Link to="/events">Explore →</Link>
-        </div>
 
-        <div className="feature-card">
+          <Link to="/events">
+            Explore →
+          </Link>
+        </Card>
+
+        <Card
+          title="Workshops"
+          description="Learn new skills"
+        >
           <div className="feature-icon">💡</div>
-          <h3>Workshops</h3>
-          <p>Learn new skills</p>
-          <Link to="/events">Explore →</Link>
-        </div>
 
-        <div className="feature-card">
+          <Link to="/events">
+            Explore →
+          </Link>
+        </Card>
+
+        <Card
+          title="Activities"
+          description="Join campus activities"
+        >
           <div className="feature-icon">🏆</div>
-          <h3>Activities</h3>
-          <p>Join campus activities</p>
-          <Link to="/events">Explore →</Link>
-        </div>
+
+          <Link to="/events">
+            Explore →
+          </Link>
+        </Card>
 
       </section>
 
@@ -158,6 +162,7 @@ function Home() {
 
           <div className="search-box">
             🔍
+
             <input
               type="text"
               placeholder="Search events..."
@@ -171,9 +176,14 @@ function Home() {
         <div className="event-grid">
 
           {filteredEvents.map((event) => (
-            <div className="event-card" key={event.id}>
+            <Card
+              key={event.id}
+              title={event.title}
+              description={`${event.date} • ${event.location}`}
+            >
 
               <div className="card-top">
+
                 <span className="category">
                   {event.category}
                 </span>
@@ -181,11 +191,11 @@ function Home() {
                 <span className="event-number">
                   0{event.id}
                 </span>
+
               </div>
 
-              <h3>{event.title}</h3>
-
               <div className="event-info">
+
                 <p>
                   <strong>📅</strong>
                   {event.date}
@@ -195,13 +205,17 @@ function Home() {
                   <strong>📍</strong>
                   {event.location}
                 </p>
+
               </div>
 
-              <Link to="/events" className="details-button">
+              <Link
+                to="/events"
+                className="details-button"
+              >
                 View Details →
               </Link>
 
-            </div>
+            </Card>
           ))}
 
         </div>
@@ -209,7 +223,10 @@ function Home() {
         {filteredEvents.length === 0 && (
           <div className="no-events">
             <h3>No events found</h3>
-            <p>Try searching for another event.</p>
+
+            <p>
+              Try searching for another event.
+            </p>
           </div>
         )}
 
@@ -266,33 +283,6 @@ function Home() {
         </div>
 
       </section>
-
-      {/* FOOTER */}
-      <footer>
-
-        <div className="footer-logo">
-          Campus-Connect
-        </div>
-
-        <p>
-          Connecting students with campus experiences.
-        </p>
-
-        <div className="footer-links">
-          <Link to="/">Home</Link>
-          <Link to="/events">Events</Link>
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/profile">Profile</Link>
-          <Link to="/login">Login</Link>
-        </div>
-
-        <div className="footer-line"></div>
-
-        <small>
-          © 2026 Campus-Connect. All rights reserved.
-        </small>
-
-      </footer>
 
     </div>
   );

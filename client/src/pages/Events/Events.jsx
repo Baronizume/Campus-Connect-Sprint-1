@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import Card from "../../components/ui/Card";
+import PageTitle from "../../components/ui/PageTitle";
+import Button from "../../components/ui/Button";
 import "./Events.css";
 
 function Events() {
@@ -50,60 +53,56 @@ function Events() {
     return (
         <div className="events-page">
 
-            {/* NAVBAR */}
-            <header className="events-navbar">
-                <Link to="/" className="events-logo">
-                    Campus<span>-Connect</span>
-                </Link>
-
-                <nav>
-                    <Link to="/">Home</Link>
-                    <Link to="/events" className="active">
-                        Events
-                    </Link>
-                    <Link to="/dashboard">Dashboard</Link>
-                    <Link to="/profile">Profile</Link>
-                </nav>
-
-                <Link to="/login" className="events-login">
-                    Login
-                </Link>
-            </header>
-
             {/* HERO */}
             <section className="events-hero">
-                <p className="events-label">CAMPUS CONNECT</p>
 
-                <h1>
+                <p className="events-label">
+                    CAMPUS CONNECT
+                </p>
+
+                <PageTitle>
                     Campus <span>Events</span>
-                </h1>
+                </PageTitle>
 
                 <p className="events-description">
                     Discover all upcoming events, workshops, activities and
                     opportunities happening on campus.
                 </p>
+
             </section>
 
             {/* EVENTS */}
             <section className="all-events">
 
                 <div className="events-heading">
+
                     <div>
-                        <p className="events-label">UPCOMING</p>
-                        <h2>What's happening?</h2>
+                        <p className="events-label">
+                            UPCOMING
+                        </p>
+
+                        <h2>
+                            What's happening?
+                        </h2>
                     </div>
 
                     <span className="event-count">
                         {events.length} Events
                     </span>
+
                 </div>
 
                 <div className="events-grid">
 
                     {events.map((event, index) => (
-                        <article className="event-box" key={event.title}>
+                        <Card
+                            key={event.title}
+                            title={event.title}
+                            description={`${event.date} • ${event.location}`}
+                        >
 
                             <div className="event-box-top">
+
                                 <div className="event-icon">
                                     {event.icon}
                                 </div>
@@ -111,15 +110,15 @@ function Events() {
                                 <span className="event-number">
                                     0{index + 1}
                                 </span>
+
                             </div>
 
                             <span className="event-category">
                                 {event.category}
                             </span>
 
-                            <h3>{event.title}</h3>
-
                             <div className="event-details">
+
                                 <p>
                                     <span>📅</span>
                                     {event.date}
@@ -129,13 +128,16 @@ function Events() {
                                     <span>📍</span>
                                     {event.location}
                                 </p>
+
                             </div>
 
-                            <button className="event-details-button">
-                                View Details →
-                            </button>
+                            <Link to="/events">
+                                <Button className="event-details-button">
+                                    View Details →
+                                </Button>
+                            </Link>
 
-                        </article>
+                        </Card>
                     ))}
 
                 </div>
@@ -144,6 +146,7 @@ function Events() {
 
             {/* CTA */}
             <section className="events-cta">
+
                 <h2>
                     Ready to get involved?
                 </h2>
@@ -153,33 +156,13 @@ function Events() {
                     college experience.
                 </p>
 
-                <Link to="/dashboard" className="cta-button">
-                    Go to Dashboard →
+                <Link to="/dashboard">
+                    <Button className="cta-button">
+                        Go to Dashboard →
+                    </Button>
                 </Link>
+
             </section>
-
-            {/* FOOTER */}
-            <footer className="events-footer">
-                <h3>Campus-Connect</h3>
-
-                <p>
-                    Connecting students with campus experiences.
-                </p>
-
-                <div className="footer-links">
-                    <Link to="/">Home</Link>
-                    <Link to="/events">Events</Link>
-                    <Link to="/dashboard">Dashboard</Link>
-                    <Link to="/profile">Profile</Link>
-                    <Link to="/login">Login</Link>
-                </div>
-
-                <div className="footer-divider"></div>
-
-                <small>
-                    © 2026 Campus-Connect. All rights reserved.
-                </small>
-            </footer>
 
         </div>
     );
