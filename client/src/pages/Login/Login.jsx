@@ -6,7 +6,6 @@ import "./Login.css";
 function Login() {
   return (
     <div className="login-page">
-
       <div className="login-card">
 
         {/* LOGO */}
@@ -16,7 +15,6 @@ function Login() {
 
         {/* HEADER */}
         <div className="login-header">
-
           <div className="login-icon">
             🎓
           </div>
@@ -28,12 +26,13 @@ function Login() {
           <p>
             Login to continue to your Campus Connect account.
           </p>
-
         </div>
 
         {/* LOGIN FORM */}
-        <form className="login-form">
-
+        <form
+          className="login-form"
+          onSubmit={(event) => event.preventDefault()}
+        >
           <div className="form-group">
             <label htmlFor="email">
               Email Address
@@ -59,7 +58,6 @@ function Login() {
           </div>
 
           <div className="login-options">
-
             <label className="remember-me">
               <input type="checkbox" />
               Remember me
@@ -68,7 +66,6 @@ function Login() {
             <a href="#forgot">
               Forgot Password?
             </a>
-
           </div>
 
           <Button
@@ -77,7 +74,6 @@ function Login() {
           >
             Login →
           </Button>
-
         </form>
 
         {/* DIVIDER */}
@@ -85,12 +81,12 @@ function Login() {
           <span>or</span>
         </div>
 
-        {/* SIGN UP */}
+        {/* CREATE ACCOUNT */}
         <p className="signup-text">
           Don't have an account?{" "}
-          <a href="#signup">
+          <Link to="/student-registration">
             Create Account
-          </a>
+          </Link>
         </p>
 
         {/* BACK HOME */}
@@ -99,7 +95,6 @@ function Login() {
         </Link>
 
       </div>
-
     </div>
   );
 }
