@@ -1,0 +1,95 @@
+/* ==============================
+   TABLET
+   ============================== */
+
+@media (max-width: 900px) {
+    .navbar {
+        padding: 0 4%;
+        gap: 18px;
+    }
+
+    .nav-links {
+        gap: 16px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    .navbar-login {
+        padding: 9px 16px;
+    }
+}
+
+
+/* ==============================
+   MOBILE
+   ============================== */
+
+@media (max-width: 650px) {
+    .navbar {
+        min-height: auto;
+        padding: 18px 5%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .navbar-logo {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 12px 20px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    .navbar-login {
+        padding: 9px 18px;
+    }
+}
+
+
+/* ==============================
+   SMALL MOBILE
+   ============================== */
+
+@media (max-width: 420px) {
+    .navbar {
+        padding: 15px 4%;
+    }
+
+    .nav-links {
+        gap: 10px 14px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+    }
+
+    .navbar-login {
+        font-size: 13px;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 900px) {
+
+    .features-section,
+    .event-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+
+    .features-section,
+    .event-grid {
+        grid-template-columns: 1fr;
+    }
+}

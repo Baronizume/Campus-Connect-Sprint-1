@@ -1,0 +1,35 @@
+.card {
+    width: 100%;
+    min-width: 0;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+}
+
+.card-title {
+    margin: 0 0 8px;
+    color: #172033;
+}
+
+.card-description {
+    margin: 0;
+    color: #64748b;
+    line-height: 1.6;
+}
+
+.card-content {
+    width: 100%;
+}
+
+.features-section {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
