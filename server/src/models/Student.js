@@ -6,13 +6,15 @@ const studentSchema = new mongoose.Schema(
             type: String,
             required: true,
             unique: true,
-            trim: true,
+            trim: true
         },
 
         name: {
             type: String,
             required: true,
-            trim: true,
+            minlength: 2,
+            maxlength: 100,
+            trim: true
         },
 
         email: {
@@ -20,32 +22,48 @@ const studentSchema = new mongoose.Schema(
             required: true,
             trim: true,
             lowercase: true,
+            match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         },
 
         phone: {
             type: String,
-            trim: true,
+            required: true,
+            match: /^[0-9]{10}$/
         },
 
         course: {
             type: String,
             required: true,
-            trim: true,
+            trim: true
         },
 
         semester: {
             type: String,
-            trim: true,
+            trim: true
+        },
+
+        year: {
+            type: String,
+            trim: true
         },
 
         section: {
             type: String,
-            trim: true,
+            trim: true
         },
+
+        status: {
+            type: String,
+            required: true,
+            default: "active",
+            enum: ["active", "inactive"]
+        }
     },
     {
-        timestamps: true,
+        timestamps: true
     }
 );
 
-module.exports = mongoose.model("Student", studentSchema);
+const Student = mongoose.model("Student", studentSchema);
+
+module.exports = Student;
