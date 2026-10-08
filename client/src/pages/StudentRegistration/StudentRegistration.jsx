@@ -68,7 +68,7 @@ function StudentRegistration() {
         return newErrors;
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         const validationErrors = validateForm();
@@ -79,10 +79,48 @@ function StudentRegistration() {
             return;
         }
 
-        console.log("Student Registration Data:", formData);
+        try {
+            const response = await fetch(
+                "http://localhost:5000/api/students",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        studentId: formData.rollNumber,
+                        name: formData.name,
+                        email: formData.email,
+                        phone: formData.phone,
+                        course: formData.department,
+                        semester: formData.year,
+                        section: "",
+                    }),
+                }
+            );
 
-        setErrors({});
-        setSubmitted(true);
+            const result = await response.json();
+
+            console.log("Backend response:", result);
+
+            if (!response.ok || !result.success) {
+                throw new Error(
+                    result.message || "Student registration failed."
+                );
+            }
+
+            setErrors({});
+            setSubmitted(true);
+
+        } catch (error) {
+            console.error("Registration error:", error);
+
+            setSubmitted(false);
+
+            setErrors({
+                submit: error.message || "Unable to register student.",
+            });
+        }
     };
 
     const handleReset = () => {
@@ -104,13 +142,19 @@ function StudentRegistration() {
             <div className="registration-card">
 
                 <div className="registration-header">
-                    <div className="registration-icon">🎓</div>
 
-                    <h1>Student Registration</h1>
+                    <div className="registration-icon">
+                        🎓
+                    </div>
+
+                    <h1>
+                        Student Registration
+                    </h1>
 
                     <p>
                         Create your Campus Connect student account.
                     </p>
+
                 </div>
 
                 {submitted && (
@@ -119,10 +163,17 @@ function StudentRegistration() {
                     </div>
                 )}
 
+                {errors.submit && (
+                    <div className="error-message">
+                        {errors.submit}
+                    </div>
+                )}
+
                 <form onSubmit={handleSubmit} noValidate>
 
                     {/* Student Name */}
                     <div className="form-group">
+
                         <label htmlFor="name">
                             Student Name <span>*</span>
                         </label>
@@ -137,12 +188,16 @@ function StudentRegistration() {
                         />
 
                         {errors.name && (
-                            <p className="error-message">{errors.name}</p>
+                            <p className="error-message">
+                                {errors.name}
+                            </p>
                         )}
+
                     </div>
 
                     {/* Email */}
                     <div className="form-group">
+
                         <label htmlFor="email">
                             Email Address <span>*</span>
                         </label>
@@ -157,12 +212,16 @@ function StudentRegistration() {
                         />
 
                         {errors.email && (
-                            <p className="error-message">{errors.email}</p>
+                            <p className="error-message">
+                                {errors.email}
+                            </p>
                         )}
+
                     </div>
 
                     {/* Phone */}
                     <div className="form-group">
+
                         <label htmlFor="phone">
                             Phone Number <span>*</span>
                         </label>
@@ -177,12 +236,16 @@ function StudentRegistration() {
                         />
 
                         {errors.phone && (
-                            <p className="error-message">{errors.phone}</p>
+                            <p className="error-message">
+                                {errors.phone}
+                            </p>
                         )}
+
                     </div>
 
                     {/* Roll Number */}
                     <div className="form-group">
+
                         <label htmlFor="rollNumber">
                             Roll Number <span>*</span>
                         </label>
@@ -197,12 +260,16 @@ function StudentRegistration() {
                         />
 
                         {errors.rollNumber && (
-                            <p className="error-message">{errors.rollNumber}</p>
+                            <p className="error-message">
+                                {errors.rollNumber}
+                            </p>
                         )}
+
                     </div>
 
                     {/* Department */}
                     <div className="form-group">
+
                         <label htmlFor="department">
                             Department <span>*</span>
                         </label>
@@ -213,22 +280,30 @@ function StudentRegistration() {
                             value={formData.department}
                             onChange={handleChange}
                         >
-                            <option value="">Select Department</option>
+                            <option value="">
+                                Select Department
+                            </option>
+
                             <option value="Computer Science">
                                 Computer Science
                             </option>
+
                             <option value="Information Technology">
                                 Information Technology
                             </option>
+
                             <option value="Business Administration">
                                 Business Administration
                             </option>
+
                             <option value="Commerce">
                                 Commerce
                             </option>
+
                             <option value="Arts">
                                 Arts
                             </option>
+
                         </select>
 
                         {errors.department && (
@@ -236,10 +311,12 @@ function StudentRegistration() {
                                 {errors.department}
                             </p>
                         )}
+
                     </div>
 
                     {/* Year */}
                     <div className="form-group">
+
                         <label htmlFor="year">
                             Year <span>*</span>
                         </label>
@@ -250,11 +327,26 @@ function StudentRegistration() {
                             value={formData.year}
                             onChange={handleChange}
                         >
-                            <option value="">Select Year</option>
-                            <option value="1st Year">1st Year</option>
-                            <option value="2nd Year">2nd Year</option>
-                            <option value="3rd Year">3rd Year</option>
-                            <option value="4th Year">4th Year</option>
+                            <option value="">
+                                Select Year
+                            </option>
+
+                            <option value="1st Year">
+                                1st Year
+                            </option>
+
+                            <option value="2nd Year">
+                                2nd Year
+                            </option>
+
+                            <option value="3rd Year">
+                                3rd Year
+                            </option>
+
+                            <option value="4th Year">
+                                4th Year
+                            </option>
+
                         </select>
 
                         {errors.year && (
@@ -262,10 +354,12 @@ function StudentRegistration() {
                                 {errors.year}
                             </p>
                         )}
+
                     </div>
 
                     {/* Buttons */}
                     <div className="button-container">
+
                         <button
                             type="submit"
                             className="submit-button"
@@ -280,15 +374,20 @@ function StudentRegistration() {
                         >
                             Reset
                         </button>
+
                     </div>
 
                 </form>
 
                 <div className="registration-footer">
+
                     <p>
                         Already have an account?{" "}
-                        <a href="/login">Login</a>
+                        <a href="/login">
+                            Login
+                        </a>
                     </p>
+
                 </div>
 
             </div>
